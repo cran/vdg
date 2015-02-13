@@ -12,12 +12,12 @@
 #' @seealso \code{\link{runif_sphere}}, \code{\link{runif_cube}}, \code{\link{LHS}}, 
 #' \code{\link{MLHS}}, \code{\link{SLHS}}, \code{\link{RSLHS}}
 #' @author Pieter C. Schoonees
+#' @export
 #' @examples
 #' 
 #' set.seed(1896)
 #' sampler(n = 10, design = expand.grid(x = -1:1, y = -1:1))
-sampler <-
-function(n, design, type = "spherical", at = FALSE, ...){
+sampler <- function(n, design, type = "spherical", at = FALSE, ...){
   m <- ncol(design) 
   samp <- switch(type, spherical = runif_sphere(n = n, m = m, at = at, ...), 
                  cuboidal = runif_cube(n = n, m = m, at = at, ...), 

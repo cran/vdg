@@ -1,6 +1,6 @@
 #' @rdname spv
 #' @method spv data.frame
-#' @export spv data.frame
+#' @export
 spv.data.frame <- function(n, design, type = "spherical", formula, at = FALSE, 
                            keepfun, sample, unscaled = FALSE, ...){
   cll <- match.call()
@@ -34,7 +34,7 @@ spv.data.frame <- function(n, design, type = "spherical", formula, at = FALSE,
     FtF.inv <- solve(crossprod(mod.mat))
     tmp <- .Fortran("fds", as.integer(p), as.integer(n), as.integer(ndes), 
                     as.double(FtF.inv), as.double(mat), double(n), 
-                    package = "vdg")
+                    PACKAGE = "vdg")
     spv <- tmp[[6]]
     if(unscaled) spv <- spv / ndes
     out <- list(spv = spv, sample = sample, type = type, call = cll, 
@@ -55,7 +55,7 @@ spv.data.frame <- function(n, design, type = "spherical", formula, at = FALSE,
       FtF.inv <- solve(crossprod(mod.mat))
       tmp <- .Fortran("fds", as.integer(p), as.integer(n), as.integer(ndes), 
                       as.double(FtF.inv), as.double(mat), double(n), 
-                      package = "vdg")
+                      PACKAGE = "vdg")
       spv <- tmp[[6]]
       if(unscaled) spv <- spv / ndes
       out <- list(spv = spv, sample = sample, type = type, call = call, 

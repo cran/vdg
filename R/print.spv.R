@@ -7,7 +7,7 @@
 #' @param x Object of class \code{spv} or \code{spvlist}
 #' @param \dots Unimplemented
 #' @author Pieter C. Schoonees
-#' @export print
+#' @export
 #' @keywords print
 print.spv <- function(x, ...){
   cat("\nObject of class 'spv'\n")

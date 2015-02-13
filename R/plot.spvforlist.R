@@ -1,6 +1,6 @@
 #' @rdname plot.spv
 #' @method plot spvforlist
-#' @export plot spvforlist
+#' @export
 plot.spvforlist <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x[[1]]$spv)), points.colour = "#39BEB1",
                               points.size = 2, tau = c(0.05, 0.95), radii = 21, hexbin = FALSE, bins = 80,
                               df = 10, lines.size = 1, origin = rep(0, ncol(x[[1]]$sample)), method, ...) {
@@ -67,7 +67,7 @@ plot.spvforlist <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x[
     if(!is.null(tau)){
       pts <- seq(from = min(tmp1$Radius), to = max(tmp1$Radius), length = np)
       aggfun <- function(x){
-        fits <- lapply(tau, function(y) rq(SPV ~ bs(Radius, df = df), tau = y, data = x))
+        fits <- lapply(tau, function(y) quantreg::rq(SPV ~ bs(Radius, df = df), tau = y, data = x))
         sapply(fits, predict, newdata = data.frame(Radius = pts))
       }
       preds <- sapply(split(tmp1, tmp1$Formula), aggfun)

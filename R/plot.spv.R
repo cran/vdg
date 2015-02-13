@@ -38,11 +38,16 @@
 #' These can be manipulated by changing plot aesthetics and theme elements.
 #' @keywords hplot
 #' @author Pieter C. Schoonees
-#' @export plot spv
 #' @method plot spv
+#' @export
+#' @import ggplot2
+#' @import quantreg
+#' @importFrom proxy dist
+#' @importFrom splines bs
 #' @examples
 #' 
 #' # Single design (class 'spv')
+#' # Larger n should be used in actual cases
 #' library(rsm)
 #' bbd3 <- as.data.frame(bbd(3)[,3:5])
 #' colnames(bbd3) <- paste0("x", 1:3)
@@ -53,33 +58,39 @@
 #' plot(out)
 #' 
 #' # List of designs (class 'spvlist')
+#' \dontrun{
 #' library(Vdgraph)
 #' data(SCDH5); data(SCDDL5)
 #' des.list <- list(SCDH5 = SCDH5, SCDDL5 = SCDDL5)
 #' quad.5f <- formula(~ x1 + x2 + x3 + x4 + x5 + x1:x2 + x1:x3 + x1:x4 + x1:x5
 #'                     + x2:x3 + x2:x4 + x2:x5 + x3:x4 + x3:x5 + x4:x5 
 #'                    + I(x1^2) + I(x2^2) + I(x3^2) + I(x4^2) + I(x5^2))
-#' out2 <- spv(n = 1000, design = des.list, type = "spherical", formula = quad.5f)
+#' out2 <- spv(n = 500, design = des.list, type = "spherical", formula = quad.5f)
 #' out2
 #' plot(out2)
+#' }
 #' 
 #' # List of formulae (class 'spvforlist')
+#' \dontrun{
 #' fact3 <- expand.grid(x1 = c(-1,1), x2 = c(-1, 1), x3 = c(-1,1))
 #' lin.3f <- formula(~ x1 + x2 + x3)
 #' int.3f <- formula(~ (x1+x2+x3)^2)
 #' set.seed(4312)
-#' out3 <- spv(n = 1000, design = fact3, type = "cuboidal", 
+#' out3 <- spv(n = 500, design = fact3, type = "cuboidal", 
 #'              formula = list(linear = lin.3f, interaction = int.3f))
 #' out3
 #' plot(out3)
+#' }
 #' 
 #' # List of formulae and designs (class 'spvlistforlist')
+#' \dontrun{
 #' fact3.n <- rbind(fact3, 0, 0, 0)
 #' set.seed(4312)
-#' out4 <- spv(n = 1000, design = list(factorial = fact3, factorial.with.cntr = fact3.n), 
+#' out4 <- spv(n = 200, design = list(factorial = fact3, factorial.with.cntr = fact3.n), 
 #'              type = "cuboidal", formula = list(linear = lin.3f, interaction = int.3f))
 #' out4
 #' plot(out4)
+#' }
 plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), points.colour = "#39BEB1",
                       points.size = 2, tau = c(0.05, 0.95), radii = 21, hexbin = FALSE, bins = 80, 
                       df = 10, lines.size = 1, 
@@ -99,7 +110,8 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
   add.meanspv <- x$type == "spherical" && !is.null(radii)
   
   if(is.null(tau) & !add.meanspv){
-    if(any(3L:4L %in% which)) cat("Plots 3 and/or 4 cannot be produced: 'tau' is NULL and mean SPV not requested/possible\n")
+    if(any(3L:4L %in% which)) 
+      cat("Plots 3 and/or 4 cannot be produced: 'tau' is NULL and mean SPV not requested/possible\n")
     show[3L:4L] <- FALSE
     which <- which[!(which %in% 3L:4L)]
   }
@@ -111,14 +123,16 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
   }
   
   if(missing(method)) method <- switch(type, spherical = "Euclidean", cuboidal = "supremum", 
-                                        lhs = "supremum", mlhs = "supremum", slhs = "supremum",  rslhs = "supremum")
+                                       lhs = "supremum", mlhs = "supremum", slhs = "supremum",  
+                                       rslhs = "supremum")
   xvec <- proxy::dist(x$sample, matrix(origin, nrow = 1, ncol = ncol(x$sample)), method = method, ...)
   method <- attr(xvec, "method")
   xvec <- as.numeric(xvec)
   
   if(add.meanspv){
       if(length(radii) == 1) radii <- seq(from = 0, to = max(xvec), length.out = radii)
-      mspv <- meanspv(formula = x$formula, radii = radii, FtF.inv = x$FtF.inv, n = ifelse(x$unscaled, 1, x$ndes))
+      mspv <- meanspv(formula = x$formula, radii = radii, FtF.inv = x$FtF.inv, 
+                      n = ifelse(x$unscaled, 1, x$ndes))
       tmp3 <- as.data.frame(mspv)
       tmp3$Location <- "Mean"
   }
@@ -134,8 +148,8 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
   if(show[3L] || show[4L]){
     if(!is.null(tau)){
       pts <- seq(from = min(tmp1$Radius), to = max(tmp1$Radius), length = np)
-      fits <- lapply(tau, function(x, data) rq(SPV ~ bs(Radius, df = df), tau = x, 
-                                               data = data), data = tmp1)
+      fits <- lapply(tau, function(x, data) quantreg::rq(SPV ~ bs(Radius, df = df), tau = x, 
+                                                         data = data), data = tmp1)
       newdf <- data.frame(Radius = rep(pts, length(tau)), SPV = as.numeric(
         sapply(fits, predict, newdata = data.frame(Radius = pts))), 
         Location = rep(paste("tau =", tau), each = np))
@@ -148,19 +162,20 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
   
   if(show[1L]) {
     plot1 <- ggplot(tmp1, aes(x = Radius, y = SPV)) + ggtitle("Variance Dispersion Graph") +
-                  geom_point(alpha = alpha, colour = points.colour, size = points.size) + 
-                  theme(plot.title = element_text(size = rel(2), vjust = 1)) + xlab(paste0("Distance to Origin (", method,")"))
+      geom_point(alpha = alpha, colour = points.colour, size = points.size) + 
+      theme(plot.title = element_text(size = rel(2), vjust = 1)) + 
+      xlab(paste0("Distance to Origin (", method,")"))
     if(hexbin) {
       plot1 <- plot1 + geom_hex(bins = bins) + 
-      scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
+        scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
     }
   }
   
   if(show[2L]){
     plot2 <- ggplot(tmp2, aes(x = Fraction, y = SPV)) + ggtitle("Fraction of Design Space Plot") + 
-                    xlab("Fraction of Design Space") + 
-                    geom_line(size = lines.size, colour = points.colour) +
-                    theme(plot.title = element_text(size = rel(2), vjust = 1))
+      xlab("Fraction of Design Space") + 
+      geom_line(size = lines.size, colour = points.colour) +
+      theme(plot.title = element_text(size = rel(2), vjust = 1))
   }
   
   if(show[3L]) {
@@ -169,10 +184,10 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
             legend.text.align = 0.5) 
     if(hexbin){
       plot3 <- plot3 + geom_hex(bins = bins) + 
-          scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
+        scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
     } 
     plot3 <- plot3 + geom_line(mapping = aes(x = Radius, y = SPV, linetype = Location), data = tmp3, 
-                size = lines.size) + xlab(paste0("Distance to Origin (", method,")"))
+                               size = lines.size) + xlab(paste0("Distance to Origin (", method,")"))
   }
   
   if(show[4L]) {
@@ -180,16 +195,17 @@ plot.spv <- function (x, which = 1L:5L, np = 50, alpha = 7/sqrt(length(x$spv)), 
       geom_point(alpha = alpha, colour = points.colour, size = points.size) + 
       theme(plot.title = element_text(size = rel(2), vjust = 1), 
             legend.text.align = 0.5) 
-    if(hexbin) plot4 <- plot4 + geom_hex(bins = bins) + scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
+    if(hexbin) plot4 <- plot4 + geom_hex(bins = bins) + 
+      scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
     plot4 <- plot4 + geom_line(mapping = aes(x = Radius, y = SPV, linetype = Location), data = tmp3, 
                 size = lines.size) + xlab(paste0("Distance to Origin (", method,")"))
   }
   
   if(show[5L]) {
     plot5 <- ggplot(tmp1, aes(x = Radius, y = SPV)) + ggtitle("Boxplots") +
-      geom_boxplot(aes(x = as.factor(round(Radius, getOption("digits"))))) + xlab(paste0("Distance to Origin (", method,")")) +
-      theme(plot.title = element_text(size = rel(2), vjust = 1), 
-            legend.text.align = 0.5)
+      geom_boxplot(aes(x = as.factor(round(Radius, getOption("digits"))))) + 
+      xlab(paste0("Distance to Origin (", method,")")) +
+      theme(plot.title = element_text(size = rel(2), vjust = 1), legend.text.align = 0.5)
   }
   
 if(length(which)) {

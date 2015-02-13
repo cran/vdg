@@ -1,13 +1,10 @@
 #' @rdname runif_sphere
+#' @export
 #' @examples
 #' 
 #' set.seed(1234)
 #' runif_sphere(n = 10)
-#' 
-#' @export
-runif_cube <-
-function (n, m = 2, max.dist = 1, at = FALSE, nr.dist = 21) 
-{ 
+runif_cube <- function (n, m = 2, max.dist = 1, at = FALSE, nr.dist = 21) { 
   if(at){
     spec.dist <- seq(from = 0, to = max.dist, length = nr.dist)
 #     nper <- ceiling(n/nr.dist)  

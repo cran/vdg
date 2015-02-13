@@ -13,15 +13,13 @@
 #' @param nr.dist the number of concentric hypercubes to use in case at is \code{TRUE}
 #' @param nr.rad number of concentric hyperspheres to sample on in case of \code{at} being \code{TRUE}
 #' @author Pieter C. Schoonees
+#' @export
 #' @examples
 #' 
 #' set.seed(1234)
 #' samp <- runif_sphere(n = 500, at = TRUE)
 #' plot(samp, asp = 1)
-#' @export
-runif_sphere <-
-function (n, m = 2, max.radius = sqrt(m), at = FALSE, nr.rad = 21) 
-{
+runif_sphere <- function (n, m = 2, max.radius = sqrt(m), at = FALSE, nr.rad = 21) {
   if(m > 2){
     bvec <- (m - 1:(m - 2))/2
     bvec <- beta(bvec, bvec)

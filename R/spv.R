@@ -19,6 +19,8 @@
 #' @author Pieter C. Schoonees
 #' @seealso \code{\link{plot.spv}} for more examples
 #' @keywords multivariate
+#' @export
+#' @import parallel
 #' @examples
 #' 
 #' # Single design (class 'spv')
@@ -29,7 +31,7 @@
 #' out <- spv(n = 1000, design = bbd3, type = "spherical", formula = quad.3f)
 #' out
 #' @rdname spv
-#' @export spv
+#' @export
 spv <- function(n, design, type = "spherical", formula, at = FALSE, keepfun, sample, unscaled = FALSE, ...){
   UseMethod("spv", design)
 }

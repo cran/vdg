@@ -1,6 +1,6 @@
 #' @rdname print.spv
 #' @method print spvlist
-#' @export print spvlist
+#' @export
 print.spvlist <- function(x, ...){
   nms <- names(x)
   if(is.null(nms)) nms <- seq_along(x)

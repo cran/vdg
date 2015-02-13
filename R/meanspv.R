@@ -55,6 +55,7 @@ meanspv <- function(formula, radii, FtF.inv, n){
   return(out)
 }
 #' @rdname meanspv
+#' @export
 expmat <- function(formula){
   vars <- all.vars(formula)
   terms <- terms(formula)

@@ -1,6 +1,6 @@
 #' @rdname print.spv
 #' @method print spvlistforlist
-#' @export print spvlistforlist
+#' @export
 print.spvlistforlist <- function(x, ...){
   fornms <- names(x)
   desnms <- names(x[[1]])

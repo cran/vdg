@@ -1,0 +1,9 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{vdg}: Variance Dispersion Graphs and Fraction of Design Space Plots ",
+         author = c(person(given = "Pieter", middle = "C.", family = "Schoonees")),
+         year = year,
+         note = note,
+         url = "http://CRAN.R-project.org/package=vdg")
