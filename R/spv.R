@@ -13,7 +13,8 @@
 #' @param sample optional; if not missing it should contain a matrix or data.frame containing points sampled over the required design region. If it is not 
 #' missing, no further sampling will be done: the SPV is simply evaluated at these points.
 #' @param unscaled logical indicating whether to use the unscaled prediction variance (UPV) instead of the scale prediction variance (SPV)
-#' @param \dots additional arguments passed to \code{\link{sampler}}
+#' @param \dots additional arguments passed to \code{\link{sampler}}. This enables the used of 
+#' user-specified sampling functions via the \code{custom.fun} argument to \code{\link{sampler}}.
 #' @return Object of class 'spv', 'spvlist', 'spvforlist' or 'spvlistforlist', depending on whether single designs/formulas
 #' are passed or lists of these. 
 #' @author Pieter C. Schoonees
