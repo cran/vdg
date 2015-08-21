@@ -12,7 +12,7 @@
 \usepackage{amsfonts}
 \usepackage[font={rm,md,it}]{subfig}
 %\usepackage{algpseudocode}
-\usepackage[authoryear,round,longnamesfirst]{natbib}
+% \usepackage[authoryear,round,longnamesfirst]{natbib}
 % \usepackage{Sweave}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -106,7 +106,7 @@ opts_chunk$set(comment = NA, size = 'normalsize', prompt = TRUE, highlight = FAL
                background = "#FFFFFF")
 opts_knit$set(out.format = "latex")
 knit_hooks$set(crop = hook_pdfcrop)
-options(width = 70, prompt = "  R> ", continue = "  +  ", digits = 3, useFancyQuotes = FALSE)
+options(width = 70, prompt = "R> ", continue = "+  ", digits = 3, useFancyQuotes = FALSE)
 
 thm <- knit_theme$get('default')
 
@@ -170,7 +170,7 @@ process optimization, such as in response surface methodology (RSM)
 There are currently two similar packages available for \proglang{R} on CRAN, namely \pkg{Vdgraph} \citep{Vdgraph} and \pkg{VdgRsm} \citep{VdgRsm}. \pkg{Vdgraph} provides a front-end for the original \proglang{Fortran} program of 
 \cite{Vin1993a,Vin1993b} for constructing VDGs, rewritten and simplified to a subroutine. This package allows only full second-order models to be investigated over hyperspherical design regions, using an optimization strategy which combines a Nelder-Mead simplex search with a grid search. In contrast, \pkg{VdgRsm} employs random sampling to explore design regions. \pkg{VdgRsm} also includes FDS plots. However, \pkg{VdgRsm} allows only for full second-order models, and the user has limited control over graphical output.
 
-In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg}, of which version 1.0 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
+In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg} \citep{vdg}, of which version 1.1.1 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
 
 In the subsequent section the theory of these graphical procedures is briefly
 reviewed, and in particular some extensions are offered. This is followed by 
@@ -216,7 +216,7 @@ for a given model as
 ))) = \mathbf{f(x)}^{\top} \mathbf{M}^{-1}( \xi_{n} ) \mathbf{f(x)}.
 \end{equation}
 
-Note that in~(\ref{E:InfoMat}) --~(\ref{E:spv}) only regression models that are
+Note that in Equations~\ref{E:InfoMat}~--~\ref{E:spv} only regression models that are
 linear in the parameters are considered.  Models non-linear in the 
 parameters have the property that the Fisher information matrix, introduced
 below, is a function of the unknown parameters. In such models the design 
@@ -258,7 +258,7 @@ computed. For non-rotatable designs the minimum and maximum SPV curves must be
 estimated by point-wise numerical optimization schemes, a task whose 
 computational intensiveness can be aggravated by the presence of local optima.
 
-The choice of concentric hyperspheres (i.e. radius) to summarize the SPV is related to the choice of Euclidean distance as a metric for summarizing the remoteness of hypersphere from the origin (as in Figure~\ref{F:spv-example}). In practice any appropriate metric can be used. For hypercuboidal design regions using concentric hypercubes are indeed more natural. This relates to the choice of the $L_{\infty}$-norm as metric (also known as supremum distance). We will see in Section~\ref{S:Exa} how \pkg{vdg} relies on the \pkg{proxy} package \citep{proxy} to incorporate a variety of metrics into the construction of VDGs.
+The choice of concentric hyperspheres (i.e., radius) to summarize the SPV is related to the choice of Euclidean distance as a metric for summarizing the remoteness of hypersphere from the origin (as in Figure~\ref{F:spv-example}). In practice any appropriate metric can be used. For hypercuboidal design regions using concentric hypercubes are indeed more natural. This relates to the choice of the $L_{\infty}$-norm as metric (also known as supremum distance). We will see in Section~\ref{S:Exa} how \pkg{vdg} relies on the \pkg{proxy} package \citep{proxy} to incorporate a variety of metrics into the construction of VDGs.
 
 Subsequently, the traditional VDG theory is discussed, assuming a hyperspherical design region.
 
@@ -266,7 +266,7 @@ Subsequently, the traditional VDG theory is discussed, assuming a hyperspherical
 Denote by $U_{r}=\{\mathbf{x} \in \mathcal{X}:\mathbf{x}^{\top}\mathbf{x} =
 r^{2}\}$ the \emph{surface} of the hypersphere of radius $r$ centred at the 
 origin of the spherical design space $\mathcal{X}$. \cite{Gio1989} define the
-spherical SPV at $r$, i.e. the mean SPV over $U_{r}$, as:
+spherical SPV at $r$, i.e., the mean SPV over $U_{r}$, as:
 \begin{align}\label{E:sphSPV}
     V^{r}   &= \frac{n \Theta}{\sigma^2} \int_{U_{r}} \VAR(\hat{y} ( \mathbf{x}
 )) \, d \mathbf{x} \notag\\
@@ -293,7 +293,7 @@ property often leads to $\textbf{S}$ being quite sparse. Often only a few
 elements of $\boldsymbol \delta$ are nonzero, and since the symmetry implies
 that 
 it does not matter which elements these are, it is notationally more convenient
-to characterize the spherical region moments~(\ref{E:sphMom}) in terms of 
+to characterize the spherical region moments in Equation~\ref{E:sphMom} in terms of 
 the values of the nonzero elements. As an example, the two-variable first-order
 model $y = \beta_{0} + \beta_{1} x_{1} + \beta_{2} x_{2} + \varepsilon$ has 
 a spherical region moment matrix of the form \citep{Gio1989}:
@@ -337,16 +337,16 @@ with all elements of $\boldsymbol \delta$ even is:
 \left( \frac{\mathbf{1}^{\top} \boldsymbol \delta + m}{2} \right) }.
 \end{equation}
 
-This formula can be derived from the evaluation of~(\ref{E:sphMom}) after using
+This formula can be derived from the evaluation of Equation~\ref{E:sphMom} after using
 a transformation to polar coordinates \citep[see for example][pp. 
 55-56]{Mui1982} together with the properties of beta integrals. Considering the
-result in~(\ref{E:spvmom}), it is apparent that the spherical moments are 
+result in Equation~\ref{E:spvmom}, it is apparent that the spherical moments are 
 functions of the radius $r$ and the number of design variables $m$ only. The
 higher-order moments dominate the average SPV at large radii since the factor 
-$r^{\mathbf{1}^{\top} \boldsymbol \delta}$ in the formula is monotonically increasing. Equation (\ref{E:spvmom}) has been implemented in \pkg{vdg} to calculate the mean spherical SPV for any model formula (albeit subject to some restrictions -- see \code{?meanspv} for details).
+$r^{\mathbf{1}^{\top} \boldsymbol \delta}$ in the formula is monotonically increasing. Equation~\ref{E:spvmom} has been implemented in \pkg{vdg} to calculate the mean spherical SPV for any model formula (albeit subject to some restrictions -- see \code{?meanspv} for details).
 
 \subsubsection[Advantages of the random sampling approach to VDGs]{Advantages of the random sampling approach to VDGs}
-Note that although~(\ref{E:spvmom}) facilitates the analytical calculation of
+Note that although Equation~\ref{E:spvmom} facilitates the analytical calculation of
 the average spherical SPV curve, the minimum and maximum SPV must still be found by 
 pointwise numerical optimization techniques \citep[except for first-order models
 -- see][]{Gio1989}. This can be a tedious exercise as typically optimization needs to be done over a grid of radii spanning the design region $\mathcal{X}$, and local optima may be problematic. The \proglang{Fortran} program of \cite{Vin1993a,Vin1993b} uses a combination of grid search and the Nelder-Mead simplex method, which can have erratic behaviour. 
@@ -355,7 +355,7 @@ Although \proglang{R} provides a wide variety of other optimization possibilitie
 
 The form of the design region $\mathcal{X}$ is another important aspect to
 consider in the calculation of VDGs. If $\mathcal{X}$ is non-spherical, for example 
-cuboidal, (\ref{E:spvmom}) does not hold for larger radii $r$ for which only
+cuboidal, Equation~\ref{E:spvmom} does not hold for larger radii $r$ for which only
 part of the hypersphere is contained in $\mathcal{X}$. In such a case only the 
 part of the concentric hyperspheres contained in $\mathcal{X}$ should contribute
 to the minimum, average and maximum SPV curves, and truncation will be 
@@ -467,8 +467,7 @@ Figure~\ref{F:fds-example} is an example of an FDS plot for the running example 
 \subsubsection[Variants of FDS plots]{Variants of FDS plots}
 
 Several variations of FDS plots exist. One variation is to use the so-called
-unscaled prediction variance (or UPV) instead of the SPV of Equation 
-(\ref{E:spv}). The UPV $d^{*} (\mathbf{x}, \xi_{n} ) $ is defined as
+unscaled prediction variance (or UPV) instead of the SPV of Equation~\ref{E:spv}. The UPV $d^{*} (\mathbf{x}, \xi_{n} ) $ is defined as
 \begin{equation}
 d^{*} (\mathbf{x}, \xi_{n} ) = n \cdot d(\mathbf{x}, \xi_{n} ) = \sigma^{-2} \,
 \VAR(\hat{y}( \mathbf{x} )).
@@ -507,7 +506,7 @@ constructed by calculating the log variance ratio
 \end{equation}
 for each simulated point $\mathbf{x}^{*}$.
 
-In~(\ref{E:logVR}), $\xi_{n_{2}}^{2}$ is the reference  design and is
+In Equation~\ref{E:logVR}, $\xi_{n_{2}}^{2}$ is the reference  design and is
 represented by a constant log variance ratio of zero in the plot. If the log
 variance 
 ratio for a design is negative, it has a lower SPV than the reference design and
@@ -565,9 +564,9 @@ library("vdg")
 set.seed(8745)
 samp <- LHS(n = 10, m = 2, lim = c(-1, 1))
 plot(samp, main = "", pty = "s", pch = 16, ylim = c(-1, 1), 
-     asp = 1, xlab = expression(X[1]), ylab = expression(X[2]))
+asp = 1, xlab = expression(X[1]), ylab = expression(X[2]))
 abline(h = seq(-1, 1, length.out = 10), 
-       v = seq(-1, 1, length.out = 10), lty = 3, col = "grey")
+v = seq(-1, 1, length.out = 10), lty = 3, col = "grey")
 @
 
 Latin hypercube sampling thus provides an alternative to the grid procedure and
@@ -648,7 +647,7 @@ The sample can be passed explicitly by the user via the \code{sample} argument, 
 
 Besides simple \code{print()} methods, the power of \pkg{vdg} lies in its \code{plot()} methods, which produce a variety of graphs returned as a list of \pkg{ggplot2} objects. Use is made of facets to produce different panels for different designs and/or formulae. These graphical objects can subsequently be manipulated further, notably by using the theme functions in \pkg{ggplot2}. Which plots are produced depend on the input class as well as a variety of arguments (including \code{which = 1:5}). Only the most important can be mentioned here. 
 
-The \code{alpha} parameter determines the transparency of the plotted points, which helps to build a picture of the density of the prediction variance. It is often worth fine tuning this parameter, although a default is provided. The vector \code{tau} of values between zero and one determines which quantile regressions are included in the VDGs. A nonnull value for the \code{radii} argument implies that the mean spherical prediction variance will be added to the VDGs according to (\ref{E:spvmom}). It is advisable to read the help page of \code{meanspv()} when using this facility -- there are limits to what types of \code{formula}s can be handled safely. 
+The \code{alpha} parameter determines the transparency of the plotted points, which helps to build a picture of the density of the prediction variance. It is often worth fine tuning this parameter, although a default is provided. The vector \code{tau} of values between zero and one determines which quantile regressions are included in the VDGs. A nonnull value for the \code{radii} argument implies that the mean spherical prediction variance will be added to the VDGs according to Equation~\ref{E:spvmom}. It is advisable to read the help page of \code{meanspv()} when using this facility -- there are limits to what types of \code{formula}s can be handled safely. 
 
 Finally, the optional \code{method} argument is passed to \code{proxy::dist()} and determines how the distance between a sampled point and the origin of $\mathcal{X}$ is determined. Several metrics are available, as described in \code{summary(pr_DB)} in \pkg{proxy}. If unset, the \code{type} argument will determine an appropriate value, namely Euclidean and supremum distance for spherical and cuboidal design regions respectively.
 
@@ -670,10 +669,10 @@ data("D416C")
 We can construct a VDG for these designs with \pkg{vdg} simply by
 <<vdgroq,fig.width=9, fig.height=5.5, results='hide', fig.cap="A VDG for Roquemore's hybrid designs D416B and D416C for a full quadratic model.",out.width="0.7\\textwidth">>=
 quad4 <- formula( ~ (x1 + x2 + x3 + x4)^2 +  I(x1^2) + I(x2^2) + 
-                    I(x3^2) + I(x4^2))
+I(x3^2) + I(x4^2))
 set.seed(1234)
 spv1 <- spv(n = 5000, design = list(D416B = D416B, 
-                                    D416C = D416C), formula = quad4)
+D416C = D416C), formula = quad4)
 plot(spv1, which = "vdgboth")
 @
 Of course \code{quad4} could also have been specified more compactly as
@@ -688,7 +687,7 @@ plot(spv1, which = "fds", VRFDS = TRUE, np = 100)
 @
 as shown in Figure~\ref{F:ex1-bothroqfds}. The right panel shows that D416B is slightly superior over the majority of the design region.
 
-Additional options to the \code{which} argument are outlined in \code{?plot.spv}. Multiple plots can be produced in a single call by passing a vector to \code{which}. Note that the plots are by default returned as a list of \pkg{ggplot2} graphical objects \citep[see e.g.][]{murrell2011}. The plots are rendered when they are \code{print()}ed, which implies that on some graphics devices only the last plot will be visible. This can be dealt with by either storing the resulting list of graphical objects and rendering them one by one, or by specifying \code{arrange = TRUE} in the \code{plot()} call. The latter will arrange all plots in a single device by using \code{grid.arrange()} from the \pkg{gridExtra} package \citep{gridExtra}. Yet another option is to set \code{par(ask = TRUE)} before creating the plots, which will prompt the user before advancing to the next plot.
+Additional options to the \code{which} argument are outlined in \code{?plot.spv}. Multiple plots can be produced in a single call by passing a vector to \code{which}. Note that the plots are by default returned as a list of \pkg{ggplot2} graphical objects \citep[see e.g.,][]{murrell2011}. The plots are rendered when they are \code{print()}ed, which implies that on some graphics devices only the last plot will be visible. This can be dealt with by either storing the resulting list of graphical objects and rendering them one by one, or by specifying \code{arrange = TRUE} in the \code{plot()} call. The latter will arrange all plots in a single device by using \code{grid.arrange()} from the \pkg{gridExtra} package \citep{gridExtra}. Yet another option is to set \code{par(ask = TRUE)} before creating the plots, which will prompt the user before advancing to the next plot.
 
 An advantage of storing the plots as graphical objects is that we can make post-hoc changes before rendering the plot. For example, we might not like the default \pkg{ggplot2} theme used for Figure~\ref{F:vdgroq}. We can easily change the theme to something more traditional with
 <<vdgroq-theme,fig.width=7, fig.height=4, results='hide', fig.cap="A second version of Figure~\\ref{F:vdgroq}.",out.width="0.5\\textwidth">>=
@@ -702,7 +701,7 @@ In this example we consider optimal design alternatives to central composite des
 <<make-ccd3>>=
 library("rsm") 
 ccd3 <- as.data.frame(ccd(basis = 3, n0 = 4, 
-    alpha = "spherical", oneblock = TRUE))[, 3:5]
+alpha = "spherical", oneblock = TRUE))[, 3:5]
 @
 We also construct a D- and A-optimal design with \code{optFederov()} from \pkg{AlgDesign} \citep{AlgDesign}. For this purpose a candidate list of 10 000 randomly sampled points is constructed within the sphere of radius $\alpha$, with \code{runif_sphere()} in \pkg{vdg}:
 <<algdes-cand,results='hide'>>=
@@ -710,7 +709,7 @@ set.seed(8619)
 cand <- runif_sphere(n = 10000, m = 3)
 colnames(cand) <- colnames(ccd3)
 @
-The algorithm then attempts to select the 22 runs from these candidates which optimize the requested criterion. D-optimality seeks to maximize the determinant of the information matrix (\ref{E:InfoMat}), which implies minimizing the volume of the confidence ellipsoid of the regression parameters. A-optimality seeks to minimize the trace of the inverse information matrix, which minimizes the average variance of the regression parameters \citep[for more details, see for example][]{Mye2009}. The D- and A-optimal designs can be found by executing
+The algorithm then attempts to select the 22 runs from these candidates which optimize the requested criterion. D-optimality seeks to maximize the determinant of the information matrix in Equation~\ref{E:InfoMat}, which implies minimizing the volume of the confidence ellipsoid of the regression parameters. A-optimality seeks to minimize the trace of the inverse information matrix, which minimizes the average variance of the regression parameters \citep[for more details, see for example][]{Mye2009}. The D- and A-optimal designs can be found by executing
 <<algdes-AD>>=
 quad3 <- formula( ~ (x1 + x2 + x3)^2 + I(x1^2) + I(x2^2) + I(x3^2))
 library("AlgDesign") 
@@ -721,7 +720,7 @@ desA <- optFederov(quad3, data = cand, nTrials = 22, criterion = "A")
 All the information needed for the plots is obtained by calling \code{spv()} as 
 <<ex2-spv,results='hide',fig.show='hide'>>=
 spv2 <- spv(n = 10000, formula = quad3, 
-    design = list(CCD = ccd3, D = desD$design, A = desA$design))
+design = list(CCD = ccd3, D = desD$design, A = desA$design))
 plot(spv2, which = 2:3) 
 @
 <<ccdfds,include=FALSE,echo=FALSE,fig.height=5,fig.width=6,fig.show='hide'>>=
@@ -759,20 +758,20 @@ y &= -0.36 x - 0.76.\notag
 We can use this to construct a function \code{keepfun()} which takes a data matrix \code{x} and returns a logical vector indicating which of the samples in the rows of \code{x} lie within $\mathcal{X}$:
 <<keepfun>>=
 keepfun <- function(x) apply(x >= -1 & x <= 1, 1, all) & 
- (x[, 2] <= -1.08 * x[, 1] + 0.28) & (x[, 2] >= -0.36 * x[, 1] - 0.76) 
+(x[, 2] <= -1.08 * x[, 1] + 0.28) & (x[, 2] >= -0.36 * x[, 1] - 0.76) 
 @
 We compare the SPV for the full cubic model, for which the design was constructed, to this model without the cubic term for Time and the  interaction between Temperature and the quadratic term in Time. This latter model was the final model after removing the two insignificant effects -- see \citet{Goo2011}. The formula for this model is obtained as
 <<ex3-for>>=
 cube2 <- formula( ~ (Time + Temperature)^2 + I(Time^2) + 
-    I(Temperature^2) + I(Time^3) + I(Temperature^3) + 
-    Time:I(Temperature^2) + I(Time^2):Temperature)
+I(Temperature^2) + I(Time^3) + I(Temperature^3) + 
+Time:I(Temperature^2) + I(Time^2):Temperature)
 GJmod <- update(cube2, ~ . - I(Time^3) - I(Time^2):Temperature) 
 @
 To sample uniformly over $\mathcal{X}$, we can use \code{keepfun()} to construct an \code{spv} object for the standardized design. The algorithm will automatically keep sampling until at least the specified number of samples have been obtained. We now pass a list of model formulae to \code{spv()}, and use Latin hypercube sampling for illustration:
 <<ex3-spv>>=
 spv3 <- spv(n = 10000, design = stdrange(GJ54), type = "lhs", 
-    formula = list(Cubic = cube2, GoosJones = GJmod), 
-    keepfun = keepfun) 
+formula = list(Cubic = cube2, GoosJones = GJmod), 
+keepfun = keepfun) 
 @
 \vskip-20pt
 <<vdggj-noplot,eval=FALSE>>=
@@ -790,7 +789,7 @@ Since this example has only two variables, the SPV surface can also be inspected
 <<rgl-code,eval=FALSE>>=
 library("rgl") 
 with(spv3$Cubic, plot3d(x = sample[, "Time"], 
-    y = sample[, "Temperature"], z = spv))
+y = sample[, "Temperature"], z = spv))
 @
 \section[Conclusions]{Conclusions}\label{S:Con}
 The \pkg{vdg} package provides a modern and flexible \proglang{R} interface to important graphical procedures in experimental design, producing VDGs, FDS and related plots using random sampling. Multiple designs and/or multiple model formulae are seamlessly allowed for, while using \proglang{R}'s \code{formula} interface allows for flexibility in model specification. Plots are produced with the \pkg{ggplot2} package, which allows for post hoc manipulation of graphical elements. 

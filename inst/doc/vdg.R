@@ -6,7 +6,7 @@ opts_chunk$set(comment = NA, size = 'normalsize', prompt = TRUE, highlight = FAL
                background = "#FFFFFF")
 opts_knit$set(out.format = "latex")
 knit_hooks$set(crop = hook_pdfcrop)
-options(width = 70, prompt = "  R> ", continue = "  +  ", digits = 3, useFancyQuotes = FALSE)
+options(width = 70, prompt = "R> ", continue = "+  ", digits = 3, useFancyQuotes = FALSE)
 
 thm <- knit_theme$get('default')
 
@@ -68,9 +68,9 @@ library("vdg")
 set.seed(8745)
 samp <- LHS(n = 10, m = 2, lim = c(-1, 1))
 plot(samp, main = "", pty = "s", pch = 16, ylim = c(-1, 1), 
-     asp = 1, xlab = expression(X[1]), ylab = expression(X[2]))
+asp = 1, xlab = expression(X[1]), ylab = expression(X[2]))
 abline(h = seq(-1, 1, length.out = 10), 
-       v = seq(-1, 1, length.out = 10), lty = 3, col = "grey")
+v = seq(-1, 1, length.out = 10), lty = 3, col = "grey")
 
 ## ----vign, eval=FALSE-----------------------------------------------
 #  vignette(topic = "vdg", package = "vdg")
@@ -82,10 +82,10 @@ data("D416C")
 
 ## ----vdgroq,fig.width=9, fig.height=5.5, results='hide', fig.cap="A VDG for Roquemore's hybrid designs D416B and D416C for a full quadratic model.",out.width="0.7\\textwidth"----
 quad4 <- formula( ~ (x1 + x2 + x3 + x4)^2 +  I(x1^2) + I(x2^2) + 
-                    I(x3^2) + I(x4^2))
+I(x3^2) + I(x4^2))
 set.seed(1234)
 spv1 <- spv(n = 5000, design = list(D416B = D416B, 
-                                    D416C = D416C), formula = quad4)
+D416C = D416C), formula = quad4)
 plot(spv1, which = "vdgboth")
 
 ## ----quad4, eval=FALSE----------------------------------------------
@@ -102,7 +102,7 @@ p$vdgboth + theme_bw() + theme(panel.grid = element_blank())
 ## ----make-ccd3------------------------------------------------------
 library("rsm") 
 ccd3 <- as.data.frame(ccd(basis = 3, n0 = 4, 
-    alpha = "spherical", oneblock = TRUE))[, 3:5]
+alpha = "spherical", oneblock = TRUE))[, 3:5]
 
 ## ----algdes-cand,results='hide'-------------------------------------
 set.seed(8619) 
@@ -118,7 +118,7 @@ desA <- optFederov(quad3, data = cand, nTrials = 22, criterion = "A")
 
 ## ----ex2-spv,results='hide',fig.show='hide'-------------------------
 spv2 <- spv(n = 10000, formula = quad3, 
-    design = list(CCD = ccd3, D = desD$design, A = desA$design))
+design = list(CCD = ccd3, D = desD$design, A = desA$design))
 plot(spv2, which = 2:3) 
 
 ## ----ccdfds,include=FALSE,echo=FALSE,fig.height=5,fig.width=6,fig.show='hide'----
@@ -134,18 +134,18 @@ p
 
 ## ----keepfun--------------------------------------------------------
 keepfun <- function(x) apply(x >= -1 & x <= 1, 1, all) & 
- (x[, 2] <= -1.08 * x[, 1] + 0.28) & (x[, 2] >= -0.36 * x[, 1] - 0.76) 
+(x[, 2] <= -1.08 * x[, 1] + 0.28) & (x[, 2] >= -0.36 * x[, 1] - 0.76) 
 
 ## ----ex3-for--------------------------------------------------------
 cube2 <- formula( ~ (Time + Temperature)^2 + I(Time^2) + 
-    I(Temperature^2) + I(Time^3) + I(Temperature^3) + 
-    Time:I(Temperature^2) + I(Time^2):Temperature)
+I(Temperature^2) + I(Time^3) + I(Temperature^3) + 
+Time:I(Temperature^2) + I(Time^2):Temperature)
 GJmod <- update(cube2, ~ . - I(Time^3) - I(Time^2):Temperature) 
 
 ## ----ex3-spv--------------------------------------------------------
 spv3 <- spv(n = 10000, design = stdrange(GJ54), type = "lhs", 
-    formula = list(Cubic = cube2, GoosJones = GJmod), 
-    keepfun = keepfun) 
+formula = list(Cubic = cube2, GoosJones = GJmod), 
+keepfun = keepfun) 
 
 ## ----vdggj-noplot,eval=FALSE----------------------------------------
 #  plot(spv3, which = 1, points.size = 2)
@@ -156,5 +156,5 @@ plot(spv3, which = 1, points.size = 2)[[1]] + theme(plot.title = element_text(si
 ## ----rgl-code,eval=FALSE--------------------------------------------
 #  library("rgl")
 #  with(spv3$Cubic, plot3d(x = sample[, "Time"],
-#      y = sample[, "Temperature"], z = spv))
+#  y = sample[, "Temperature"], z = spv))
 

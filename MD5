@@ -1,5 +1,5 @@
-cfd448d5577451a415c80b72e0a0b2c5 *DESCRIPTION
-b809dbb3d1d5ba008bd6a91f786dc602 *NAMESPACE
+23a1c0c247bae34c56ee84ce0bd789fd *DESCRIPTION
+1b7d6d27dd0a1db003ca9948e2b38100 *NAMESPACE
 eaeb7a05ca00c8e47822b7ffba0d0d5c *R/GJ54.R
 2343c79cff76d96da02977a8acc33a07 *R/LHS.R
 0f4ce5f36409b95bc02be98fec75c213 *R/meanspv.R
@@ -19,13 +19,13 @@ d8c63a10ee0308f120064ac800ba1c52 *R/spv.R
 02ffff0c43a6ab0c196810188af28b1e *R/spv.list.R
 fbe9cd21b5a9f639e05f58bc30e513a0 *R/spv.matrix.R
 e3d74e81303f830e79216bea3eb8663b *R/stdrange.R
-d55ffaf7454fb7b0033dd01756826f6f *R/vdg-package.R
-cd1667b5b94a40e4fe2d650d2d1fc3ce *build/vignette.rds
+f335fbaece89e6da0be78220012fd013 *R/vdg-package.R
+d0eb966aeee7306d4f4ddd5c2ed4c469 *build/vignette.rds
 3c73c754c5a5caff2c82f11906eb26d8 *data/GJ54.rda
 ebb5d164e17893490f238a0e7d64cf2d *inst/CITATION
-6e4e3922fb276e974b5fa3e0ef74ae87 *inst/doc/vdg.R
-158e1a7ada035bcdbc01f31167f3f417 *inst/doc/vdg.Rnw
-5e03a21004f11164dda4b55735713a8e *inst/doc/vdg.pdf
+58169f6254f213af10a83b86f971788d *inst/doc/vdg.R
+91a48bf2af14684e8259c2b34bf1c8c4 *inst/doc/vdg.Rnw
+420d7ae56ca3567111d7157bd6b98fc7 *inst/doc/vdg.pdf
 b327de5f8ac944af624af416a0903ae8 *man/GJ54.Rd
 98dec4eba8956b10a34770be4318d2fb *man/LHS.Rd
 8733e32fc443e27031f7763d0c35d7c6 *man/meanspv.Rd
@@ -37,5 +37,5 @@ b327de5f8ac944af624af416a0903ae8 *man/GJ54.Rd
 7c0304777a9f626b6b6a8d9fede9b130 *man/stdrange.Rd
 6d14e62b3ccb2ce248d50d1719bd3c34 *man/vdg-package.Rd
 520992bcea4d1cb75eb4d4a81b3b3cd4 *src/FDS.f
-158e1a7ada035bcdbc01f31167f3f417 *vignettes/vdg.Rnw
-da5bf1432053faca885982e028ce1aac *vignettes/vdg.bib
+91a48bf2af14684e8259c2b34bf1c8c4 *vignettes/vdg.Rnw
+0d688e1e9f4a46a4551d63e585babef2 *vignettes/vdg.bib

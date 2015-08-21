@@ -31,4 +31,8 @@
 #' @author Pieter C. Schoonees <schoonees@@gmail.com>
 #' @useDynLib vdg fds
 #' @keywords package
+#' @importFrom grDevices topo.colors
+#' @importFrom methods is
+#' @importFrom stats as.formula model.matrix na.omit predict quantile rnorm runif terms
+#' @importFrom utils combn
 NULL
