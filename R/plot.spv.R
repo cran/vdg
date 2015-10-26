@@ -43,7 +43,7 @@
 #' resulting plots in a single plot window via \code{\link{grid.arrange}}, or whether to return the
 #' list of graphical objects containing the plots.
 #' @param \dots additional arguments passed to \code{\link[proxy]{dist}}
-#' @return Returns a list of \code{\link{ggplot2}} graphical objects (or grobs) with names corresponding
+#' @return Returns a list of \code{\link{ggplot}} graphical objects (or grobs) with names corresponding
 #' to the character version of \code{which}. These plot objects can be manipulated by changing plot 
 #' aesthetics and theme elements.
 #' @keywords hplot

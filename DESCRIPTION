@@ -1,8 +1,8 @@
 Package: vdg
 Type: Package
 Title: Variance Dispersion Graphs and Fraction of Design Space Plots
-Version: 1.1.1
-Date: 2015-08-21
+Version: 1.1.2
+Date: 2015-10-26
 Author: Pieter Schoonees [aut, cre, cph], Niel le Roux [ctb]
 Maintainer: Pieter Schoonees <schoonees@gmail.com>
 Depends: R (>= 3.2.2), parallel, ggplot2, quantreg
@@ -22,6 +22,6 @@ LazyData: yes
 Authors@R: c(person("Pieter", "Schoonees", email = "schoonees@gmail.com",
     role = c("aut", "cre", "cph")), person("Niel", "le Roux", role = "ctb"))
 NeedsCompilation: yes
-Packaged: 2015-08-21 14:06:36 UTC; pieter
+Packaged: 2015-10-26 10:02:47 UTC; pieter
 Repository: CRAN
-Date/Publication: 2015-08-21 16:57:56
+Date/Publication: 2015-10-26 15:58:58

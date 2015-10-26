@@ -1,9 +1,9 @@
-23a1c0c247bae34c56ee84ce0bd789fd *DESCRIPTION
+7ba5674bdcb440186c1a468ce4f3b88b *DESCRIPTION
 1b7d6d27dd0a1db003ca9948e2b38100 *NAMESPACE
 eaeb7a05ca00c8e47822b7ffba0d0d5c *R/GJ54.R
 2343c79cff76d96da02977a8acc33a07 *R/LHS.R
 0f4ce5f36409b95bc02be98fec75c213 *R/meanspv.R
-fa49736743fc553f9504f9515e7f5275 *R/plot.spv.R
+6f248d6fff68c8740140bed9a0b30286 *R/plot.spv.R
 e17182456ca56606fae810e022bb39b2 *R/plot.spvforlist.R
 7b368ac3148c864f52ecf24f7b014297 *R/plot.spvlist.R
 c6aec94d71c8eefbca37444080e5f6c1 *R/plot.spvlistforlist.R
@@ -29,7 +29,7 @@ ebb5d164e17893490f238a0e7d64cf2d *inst/CITATION
 b327de5f8ac944af624af416a0903ae8 *man/GJ54.Rd
 98dec4eba8956b10a34770be4318d2fb *man/LHS.Rd
 8733e32fc443e27031f7763d0c35d7c6 *man/meanspv.Rd
-560cf4a7b26a14033463716f758efbc2 *man/plot.spv.Rd
+c125c48499834576cccad496781e80ad *man/plot.spv.Rd
 18b98225dfdee86d0d90783609ac2393 *man/print.spv.Rd
 972436ca544636e6ad4ca36ee1e44c03 *man/runif_sphere.Rd
 60231a5dabe109e30379f783a1afc4a5 *man/sampler.Rd

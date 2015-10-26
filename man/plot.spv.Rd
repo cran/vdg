@@ -88,7 +88,7 @@ first design is used as reference design in case of \code{VRFDS} is \code{TRUE}}
 \item{\dots}{additional arguments passed to \code{\link[proxy]{dist}}}
 }
 \value{
-Returns a list of \code{\link{ggplot2}} graphical objects (or grobs) with names corresponding
+Returns a list of \code{\link{ggplot}} graphical objects (or grobs) with names corresponding
 to the character version of \code{which}. These plot objects can be manipulated by changing plot
 aesthetics and theme elements.
 }
