@@ -12,6 +12,11 @@
 #' @param FtF.inv inverse of F'F, where F is the design matrix
 #' @param n integer giving the number of design runs
 # ' @return a matrix of variables by terms containing the exponents of the varaibles in every term
+#' @author Pieter C. Schoonees
+#' @references 
+#' Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
+#' Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
+#'  \doi{10.18637/jss.v074.i03}.
 #' @examples
 #' f1 <- formula(~ x1*x2)
 #' expmat(f1)

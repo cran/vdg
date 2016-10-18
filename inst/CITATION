@@ -1,9 +1,23 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
+bibentry(bibtype = "Article",
+  title        = "Flexible Graphical Assessment of Experimental Designs in {R}: The {vdg} Package",
+  author       = c(person(given = "Pieter",
+                          family = "Schoonees"),
+                   person(given = "Ni\\\"el",
+                          family = "le Roux"),
+                   person(given = "Roelof",
+                          family = "Coetzer")),
+  journal      = "Journal of Statistical Software",
+  year         = "2016",
+  volume       = "74",
+  number       = "3",
+  pages        = "1--22",
+  doi          = "10.18637/jss.v074.i03",
 
-bibentry(bibtype = "Manual",
-         title = "{vdg}: Variance Dispersion Graphs and Fraction of Design Space Plots ",
-         author = c(person(given = c("Pieter", "C."), family = "Schoonees")),
-         year = year,
-         note = note,
-         url = "http://CRAN.R-project.org/package=vdg")
+  header       = "To cite vdg in publications use:",
+  textVersion  =
+  paste("Pieter Schoonees, Niel le Roux, Roelof Coetzer (2016).",
+        "Flexible Graphical Assessment of Experimental Designs in R: The vdg Package.",
+        "Journal of Statistical Software, 74(3), 1-22.",
+        "doi:10.18637/jss.v074.i03")
+)
+

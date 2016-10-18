@@ -28,7 +28,11 @@
 #' @name vdg-package
 #' @aliases vdg-package vdg
 #' @docType package
-#' @author Pieter C. Schoonees <schoonees@@gmail.com>
+#' @author Pieter C. Schoonees <schoonees@gmail.com>
+#' @references 
+#' Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
+#' Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
+#' \doi{10.18637/jss.v074.i03}.
 #' @useDynLib vdg fds
 #' @keywords package
 #' @importFrom grDevices topo.colors

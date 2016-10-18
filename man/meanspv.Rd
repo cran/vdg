@@ -38,4 +38,12 @@ expmat(f4)
 f5 <- update(f4, ~ . + I(x1^3*x2^0.5))
 expmat(f5)
 }
+\author{
+Pieter C. Schoonees
+}
+\references{
+Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
+Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
+ \doi{10.18637/jss.v074.i03}.
+}
 

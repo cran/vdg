@@ -7,6 +7,10 @@
 #' @param x Object of class \code{spv} or \code{spvlist}
 #' @param \dots Unimplemented
 #' @author Pieter C. Schoonees
+#' @references 
+#' Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
+#' Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
+#' \doi{10.18637/jss.v074.i03}.
 #' @export
 #' @keywords print
 print.spv <- function(x, ...){

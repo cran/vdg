@@ -1,11 +1,11 @@
 % \documentclass[article]{jss}
 \documentclass[nojss]{jss}
 
-% \VignetteIndexEntry{An R package for Flexible Graphical Assessment of Experimental Designs}
-% \VignetteDepends{vdg, Vdgraph, AlgDesign, rsm}
-% \VignetteKeyword{experimental design, fraction of design space, variance dispersion graph, scaled prediction variance}
+%\VignetteIndexEntry{An R package for Flexible Graphical Assessment of Experimental Designs}
+%\VignetteDepends{vdg, Vdgraph, AlgDesign, rsm}
+%\VignetteKeyword{experimental design, fraction of design space, variance dispersion graph, scaled prediction variance}
 %\VignetteEngine{knitr::knitr}
-% \VignettePackage{vdg}
+%\VignettePackage{vdg}
 
 \usepackage{setspace}
 \usepackage{amsmath, amsthm}
@@ -36,7 +36,7 @@
 %% almost as usual
 \author{Pieter C. Schoonees\\Rotterdam School of Management, \\Erasmus University \And
         Ni\"el J. Le Roux\\University of \\Stellenbosch
-        \And Roelof L. J. Coetzer\\Sasol Technology }
+        \And Roelof L. J. Coetzer\\Group Technology,\\Sasol South Africa }
 \title{Flexible Graphical Assessment of Experimental Designs in \proglang{R}: The \pkg{vdg} Package}
 
 %% for pretty printing and a nice hypersummary also set:
@@ -48,7 +48,7 @@ Package}
 
 %% an abstract and keywords
 \Abstract{
-This is an adjusted version of a paper submitted to the \emph{Journal of Statistical Software}.\\
+This is an adapted version of a paper submitted to the \emph{Journal of Statistical Software} \citep{schooneesJSS}.\\
 The \proglang{R} package \pkg{vdg} provides a flexible interface for producing various graphical summaries of the prediction variance associated with specific linear model specifications and experimental designs. These methods include variance dispersion graphs, fraction of design space plots and quantile plots which can assist in choosing between a catalogue of candidate experimental designs. Instead of restrictive optimization methods used in traditional software to explore design regions, \pkg{vdg} utilizes sampling methods to introduce more flexibility. The package takes advantage of \proglang{R}'s modern graphical abilities via \pkg{ggplot2} \citep{ggplot2}, adds facilities for using a variety of distance methods, allows for more flexible model specifications and incorporates quantile regressions to help with model comparison.
 }
 \Keywords{experimental design, fraction of design space plot, variance dispersion graph, scaled prediction variance}
@@ -83,7 +83,7 @@ The \proglang{R} package \pkg{vdg} provides a flexible interface for producing v
     %URL: \url{}
     
     Roelof L.J. Coetzer\\
-    Sasol Technology R\&D Division\\
+    Group Technology, Sasol South Africa\\
     Sasolburg, South Africa\\
     E-mail: \email{roelof.coetzer@sasol.com}\\
 }
@@ -170,7 +170,7 @@ process optimization, such as in response surface methodology (RSM)
 There are currently two similar packages available for \proglang{R} on CRAN, namely \pkg{Vdgraph} \citep{Vdgraph} and \pkg{VdgRsm} \citep{VdgRsm}. \pkg{Vdgraph} provides a front-end for the original \proglang{Fortran} program of 
 \cite{Vin1993a,Vin1993b} for constructing VDGs, rewritten and simplified to a subroutine. This package allows only full second-order models to be investigated over hyperspherical design regions, using an optimization strategy which combines a Nelder-Mead simplex search with a grid search. In contrast, \pkg{VdgRsm} employs random sampling to explore design regions. \pkg{VdgRsm} also includes FDS plots. However, \pkg{VdgRsm} allows only for full second-order models, and the user has limited control over graphical output.
 
-In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg} \citep{vdg}, of which version 1.1.1 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
+In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg} \citep{vdg}, of which version 1.2.0 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
 
 In the subsequent section the theory of these graphical procedures is briefly
 reviewed, and in particular some extensions are offered. This is followed by 
