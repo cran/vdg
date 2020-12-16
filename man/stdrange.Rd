@@ -25,4 +25,3 @@ the design in actual measurements into a coded design, while \code{ustdrange} re
 \author{
 Pieter C. Schoonees
 }
-

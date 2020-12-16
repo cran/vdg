@@ -3,8 +3,8 @@
 \name{LHS}
 \alias{LHS}
 \alias{MLHS}
-\alias{RSLHS}
 \alias{SLHS}
+\alias{RSLHS}
 \title{Latin Hypercube Sampling}
 \usage{
 LHS(n, m = 3, lim = c(-1, 1))
@@ -54,13 +54,12 @@ samp <- RSLHS(n = 10, m = 2)
 plot(samp, main = "RSLHS")
 abline(h = pts, v = pts, col = "lightgrey")
 }
-\author{
-Pieter C. Schoonees
-}
 \references{
 Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
 Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
  \doi{10.18637/jss.v074.i03}.
 }
+\author{
+Pieter C. Schoonees
+}
 \keyword{design}
-

@@ -4,8 +4,14 @@
 \alias{sampler}
 \title{Sampler Function}
 \usage{
-sampler(n, design, type = c("spherical", "cuboidal", "lhs", "mlhs", "slhs",
-  "rslhs", "custom"), at = FALSE, custom.fun = NULL, ...)
+sampler(
+  n,
+  design,
+  type = c("spherical", "cuboidal", "lhs", "mlhs", "slhs", "rslhs", "custom"),
+  at = FALSE,
+  custom.fun = NULL,
+  ...
+)
 }
 \arguments{
 \item{n}{number of points to sample}
@@ -44,9 +50,6 @@ samp2 <- sampler(n = 100, design = expand.grid(x = -1:1, y = -1:1),
                  type = "custom", custom.fun = sfun)
 plot(samp2)
 }
-\author{
-Pieter C. Schoonees
-}
 \references{
 Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
 Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
@@ -56,4 +59,6 @@ Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Softwar
 \code{\link{runif_sphere}}, \code{\link{runif_cube}}, \code{\link{LHS}}, 
 \code{\link{MLHS}}, \code{\link{SLHS}}, \code{\link{RSLHS}}
 }
-
+\author{
+Pieter C. Schoonees
+}

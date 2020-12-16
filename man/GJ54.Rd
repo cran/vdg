@@ -4,7 +4,9 @@
 \name{GJ54}
 \alias{GJ54}
 \title{Design from Goos & Jones}
-\format{a data frame of 15 runs in two variables: Time (seconds) and Temperature (Kelvin)}
+\format{
+a data frame of 15 runs in two variables: Time (seconds) and Temperature (Kelvin)
+}
 \usage{
 GJ54
 }
@@ -14,4 +16,3 @@ This data frame contains the design of Table 5.4 in Goos & Jones (2011).
 \references{
 Goos, P., & Jones, B. (2011). Optimal design of experiments: a case study approach. John Wiley & Sons.
 }
-

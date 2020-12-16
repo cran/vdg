@@ -2,8 +2,8 @@
 % Please edit documentation in R/vdg-package.R
 \docType{package}
 \name{vdg-package}
-\alias{vdg}
 \alias{vdg-package}
+\alias{vdg}
 \title{Variance Dispersion Graphs, Fraction-of-Design-Space Plots and Variants}
 \description{
 This package provides functionality for producing variance dispersion graphs (VDGs), 
@@ -30,9 +30,6 @@ object and recreated by printing the required plot. Storing such graphical objec
 post-hoc manipulation of the plots, such as changing the background colour by using 
 \pkg{ggplot2}'s \code{\link{theme}} function.
 }
-\author{
-Pieter C. Schoonees <schoonees@gmail.com>
-}
 \references{
 Pieter C. Schoonees, Niel J. le Roux, Roelof L.J. Coetzer (2016). Flexible Graphical Assessment of 
 Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Software}, 74(3), 1-22. 
@@ -41,5 +38,7 @@ Experimental Designs in R: The vdg Package. \emph{Journal of Statistical Softwar
 \seealso{
 \code{\link{spv}}, \code{\link{plot.spv}}, and \code{vignette(topic = "vdg")}.
 }
+\author{
+Pieter C. Schoonees <schoonees@gmail.com>
+}
 \keyword{package}
-

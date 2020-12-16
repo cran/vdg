@@ -101,7 +101,7 @@ The \proglang{R} package \pkg{vdg} provides a flexible interface for producing v
 <<knitr-setup, include=FALSE,cache=FALSE,echo=FALSE>>=
 library(knitr)
 opts_chunk$set(comment = NA, size = 'normalsize', prompt = TRUE, highlight = FALSE, 
-               cache = TRUE, crop = TRUE, concordance = FALSE, fig.align='center',
+               cache = TRUE, crop = FALSE, concordance = FALSE, fig.align='center',
                fig.path='paper-figures/Paper-', out.width="0.4\\textwidth", fig.lp = "F:",
                background = "#FFFFFF")
 opts_knit$set(out.format = "latex")
