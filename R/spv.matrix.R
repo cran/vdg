@@ -21,7 +21,7 @@ spv.matrix <- function(n, design, type = c("spherical", "cuboidal", "lhs", "mlhs
                              design = design, type = type, at = at, ...)
         sample <- rbind(sample, addsample)
       }
-      cat("Final sample of size", nrow(sample))
+      cat("Final sample of size", nrow(sample), "\n")
     }
   }
   ndes <- nrow(design)

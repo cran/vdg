@@ -74,7 +74,6 @@
 #' 
 #' # List of designs (class 'spvlist')
 #' \dontrun{
-#' library(Vdgraph)
 #' data(SCDH5); data(SCDDL5)
 #' des.list <- list(SCDH5 = SCDH5, SCDDL5 = SCDDL5)
 #' quad.5f <- formula(~ x1 + x2 + x3 + x4 + x5 + x1:x2 + x1:x3 + x1:x4 + x1:x5

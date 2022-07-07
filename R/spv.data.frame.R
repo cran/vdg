@@ -21,7 +21,7 @@ spv.data.frame <- function(n, design, type = c("spherical", "cuboidal", "lhs", "
                              design = design, type = type, at = at, ...)
         sample <- rbind(sample, addsample)
       }
-      cat("Final sample of size", nrow(sample))
+      cat("Final sample of size", nrow(sample), "\n")
     }
   }
   ndes <- nrow(design)

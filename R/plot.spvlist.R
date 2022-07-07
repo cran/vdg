@@ -139,8 +139,9 @@ plot.spvlist <- function (x, which = c("fds", "vdgsim", "vdgquantile", "vdgboth"
       plot4 <- plot4 + geom_hex(bins = bins) + 
         scale_fill_gradientn(colours = rev(topo.colors(5)[-(4:5)]), name = "Frequency", na.value = NA)
     }
-  plot4 <- plot4 + geom_line(data = tmp3, aes(x = Radius, y = SPV, linetype = Location, 
-                          order = Design), size = lines.size, colour = 1)
+    plot4 <- plot4 + geom_line(data = tmp3, aes(x = Radius, y = SPV, linetype = Location), 
+                               # order = Design), 
+                               size = lines.size, colour = 1)
   }
 
   if (show[5L]) {

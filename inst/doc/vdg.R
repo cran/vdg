@@ -30,8 +30,7 @@ knit_theme$set(thm)
 ## Specific to vignette
 options(cl.cores = 1)
 
-## ----spv-example, echo=FALSE, fig.width=5, fig.height=5, fig.cap = "An example of a variance dispersion graph.",out.width="0.35\\textwidth"----
-library("Vdgraph")
+## ----spv-example, echo=FALSE, fig.width=5, fig.height=5, fig.cap = "An example of a variance dispersion graph.",out.width="0.35\\textwidth", message=FALSE----
 library("vdg")
 data("D310")
 set.seed(1)
@@ -76,7 +75,6 @@ v = seq(-1, 1, length.out = 10), lty = 3, col = "grey")
 #  vignette(topic = "vdg", package = "vdg")
 
 ## ----load-roq-------------------------------------------------------
-library("Vdgraph")
 data("D416B")
 data("D416C")
 

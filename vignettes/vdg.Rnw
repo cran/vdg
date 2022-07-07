@@ -2,7 +2,7 @@
 \documentclass[nojss]{jss}
 
 %\VignetteIndexEntry{An R package for Flexible Graphical Assessment of Experimental Designs}
-%\VignetteDepends{vdg, Vdgraph, AlgDesign, rsm}
+%\VignetteDepends{vdg, AlgDesign, rsm}
 %\VignetteKeyword{experimental design, fraction of design space, variance dispersion graph, scaled prediction variance}
 %\VignetteEngine{knitr::knitr}
 %\VignettePackage{vdg}
@@ -170,7 +170,7 @@ process optimization, such as in response surface methodology (RSM)
 There are currently two similar packages available for \proglang{R} on CRAN, namely \pkg{Vdgraph} \citep{Vdgraph} and \pkg{VdgRsm} \citep{VdgRsm}. \pkg{Vdgraph} provides a front-end for the original \proglang{Fortran} program of 
 \cite{Vin1993a,Vin1993b} for constructing VDGs, rewritten and simplified to a subroutine. This package allows only full second-order models to be investigated over hyperspherical design regions, using an optimization strategy which combines a Nelder-Mead simplex search with a grid search. In contrast, \pkg{VdgRsm} employs random sampling to explore design regions. \pkg{VdgRsm} also includes FDS plots. However, \pkg{VdgRsm} allows only for full second-order models, and the user has limited control over graphical output.
 
-In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg} \citep{vdg}, of which version 1.2.0 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
+In this paper we present and discuss the new \proglang{R} \citep{R} package \pkg{vdg} \citep{vdg}, of which version 1.2.2 is available on the Comprehensive \proglang{R} Archive Network (CRAN). The aims of this package are threefold. First, we aim to offer an implementation of VDGs and FDS plots which harness the modern graphical capabilities of \proglang{R} by utilizing the popular \pkg{ggplot2} plotting system \citep{ggplot2}. Furthermore, \pkg{vdg} offers generalizations of VDGs by borrowing ideas from QPs \citep{Khu1996} and increased flexibility by harnessing the well-known \proglang{R} modelling infrastructure. The latter use of formulae and model matrices greatly increase the scope of models that can be explored. Finally, \pkg{vdg} uses random sampling as a design philosophy for exploring design regions, in contrast to optimization methods employed in traditional VDG software. This allows novel enhancements of VDGs such as allowing for flexible design regions, while also alleviating convergence problems and lack of flexibility often characteristic of traditional software tools in this area.
 
 In the subsequent section the theory of these graphical procedures is briefly
 reviewed, and in particular some extensions are offered. This is followed by 
@@ -235,8 +235,7 @@ on the surface of each hypersphere against the radius of the hypersphere.
 In this way the high-dimensional SPV profile can always be summarized in a
 two-dimensional plot of the SPV values against the radius. An example is given in Figure~\ref{F:spv-example}, where $\mathcal{X}$ is spherical with  maximum radius $\sqrt{3}$. Here the solid line represents the mean SPV, and the long and short dashed lines the maximum and minimum SPV respectively. The mean of the SPV distribution over the surface of a hypersphere is also known as the \emph{spherical SPV}. 
 
-<<spv-example, echo=FALSE, fig.width=5, fig.height=5, fig.cap = "An example of a variance dispersion graph.",out.width="0.35\\textwidth">>=
-library("Vdgraph")
+<<spv-example, echo=FALSE, fig.width=5, fig.height=5, fig.cap = "An example of a variance dispersion graph.",out.width="0.35\\textwidth", message=FALSE>>=
 library("vdg")
 data("D310")
 set.seed(1)
@@ -659,10 +658,9 @@ will display a version of this paper which also serves as package vignette.
 
 \section[Examples]{Examples}\label{S:Exa}
 \subsection{Comparing four-factor hybrid designs}
-As a first example, we compare Roquemore's \citep{Roq1976} near-saturated 16-run hybrid designs \code{D416B} and \code{D416C} for a full second-order model in four factors. These designs are available in \pkg{Vdgraph} as
+As a first example, we compare Roquemore's \citep{Roq1976} near-saturated 16-run hybrid designs \code{D416B} and \code{D416C} for a full second-order model in four factors. These designs are available in \pkg{vdg} (and was taken from \pkg{Vdgraph}) as
 
 <<load-roq>>=
-library("Vdgraph")
 data("D416B")
 data("D416C")
 @

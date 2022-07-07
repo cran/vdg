@@ -25,7 +25,7 @@ spv.list <- function(n, design, type = c("spherical", "cuboidal", "lhs", "mlhs",
                              design = design[[1]], type = type, at = at, ...)
         sample <- rbind(sample, addsample)
       }
-      message("Final sample of size", nrow(sample))
+      message("Final sample of size", nrow(sample), "\n")
     }
   }
   spvdesign <- function(design, sample, formula, call, unscaled){
